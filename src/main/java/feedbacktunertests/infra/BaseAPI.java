@@ -4,10 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 
 public class BaseAPI {
 	
 	RestAssured ra = new RestAssured();
+	public final String VALID_USER = "roy.daklon@mailinator.com";
+	public final String VALID_PASSWORD = "Nji90okm";
 	
 	
 	public String getBasePath() {
@@ -22,16 +25,19 @@ public class BaseAPI {
 		
 	}
 	
-	public void getCookieAfterLogin() {
+	// Get the Cookie of the user and cut the curly brackets from it
+	public String getCookieAfterLogin() {
 		Map<String, String> jsonAsMap = new HashMap<>();
-	    jsonAsMap.put("username", "roy.daklon@mailinator.com");
-	    jsonAsMap.put("password", "Nji90okm");
-	    RestAssured.given().
+	    jsonAsMap.put("username", VALID_USER);
+	    jsonAsMap.put("password", VALID_PASSWORD);
+	    Response response = RestAssured.given().
 	        contentType("application/json").
 	        body(jsonAsMap).
 	        when().
-	        post(RestAssured.basePath + RestAssured.baseURI).
-	    then().statusCode(200).log().all();
+	        post(getBasePath() + getBaseURI());
+	    String authCookie = response.getCookies().toString().
+	    		replace("{", "").trim().
+	    		replace("}", "").trim();
+	    return authCookie;
 	}
-
 }
