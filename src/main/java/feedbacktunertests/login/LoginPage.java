@@ -5,7 +5,6 @@ import java.util.Map;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import io.restassured.RestAssured;
-import io.restassured.response.Response;
 
 public class LoginPage {
 
