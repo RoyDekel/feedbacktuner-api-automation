@@ -4,27 +4,26 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import feedbacktunertests.infra.BaseAPI;
-import io.restassured.response.Response;
 
 public class GetMarketPlace {
 	
 	BaseAPI baseAPI = new BaseAPI();
+	MarketPlaceObjects marketPlaceObject = new MarketPlaceObjects();
 	
 	@BeforeMethod
 	public void setup() {
 		baseAPI.getCookieAfterLogin();
 	}
 	
-	@Test(dataProviderClass = DataProviderMarketPlaces.class, dataProvider = "amazonSellerId")
-	public void getAmazonSellerID(String value) {
-		Response response = baseAPI.httpRequest().
-	        cookie(baseAPI.getCookieAfterLogin()).
-	        when().
-	        get(baseAPI.getBasePath() + "/marketplaces").
-	    then().statusCode(200).extract().response();
-		String amazonSellerId = response.jsonPath().getString("amazonSellerId");
+	@Test(dataProviderClass = DataProviderMarketPlaces.class, dataProvider = "amazonSellerId", enabled = true)
+	public void amazonSellerIdTest(String value) {
+		String amazonSellerId = marketPlaceObject.fetchStringFromResponse("amazonSellerId");
 	    Assert.assertEquals(amazonSellerId, value);
 	}
 	
-	
+	@Test(dataProviderClass = DataProviderMarketPlaces.class, dataProvider = "marketPlaceId", enabled = true)
+	public void marketPlaceIdTest(String value) {
+		String getMarketPlaceId = marketPlaceObject.fetchStringFromResponse("id");		
+		Assert.assertEquals(getMarketPlaceId, value);
+	}
 }

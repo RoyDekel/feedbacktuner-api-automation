@@ -5,7 +5,7 @@
     <classes>
       <class name="feedbacktunertests.marketplaces.GetMarketPlace">
         <methods>
-          <include name="getAmazonSellerID"/>
+          <include name="getMarketPlaceId" invocation-numbers="0"/>
           <include name="setup"/>
         </methods>
       </class> <!-- feedbacktunertests.marketplaces.GetMarketPlace -->

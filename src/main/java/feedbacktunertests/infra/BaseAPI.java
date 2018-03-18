@@ -21,8 +21,8 @@ public class BaseAPI {
 		return RestAssured.basePath = "https://test.feedbacktuner.com/api";
 	}
 	
-	public String getBaseURI() {
-		return RestAssured.baseURI = "/login";	 
+	public String getBaseURI(String URI) {
+		return RestAssured.baseURI = URI;	 
 	}
 	
 	public RequestSpecification httpRequest() {
@@ -38,7 +38,7 @@ public class BaseAPI {
 	        contentType("application/json").
 	        body(jsonAsMap).
 	        when().
-	        post(getBasePath() + getBaseURI());
+	        post(getBasePath() + getBaseURI("/login"));
 	    String authCookie = response.getCookies().toString().
 	    		replace("{", "").trim().
 	    		replace("}", "").trim();

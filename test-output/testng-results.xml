@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2018-03-13T19:18:42Z" name="Default suite" finished-at="2018-03-13T19:18:48Z" duration-ms="6065">
+  <suite started-at="2018-03-18T15:24:38Z" name="Default suite" finished-at="2018-03-18T15:24:47Z" duration-ms="8260">
     <groups>
     </groups>
-    <test started-at="2018-03-13T19:18:42Z" name="Default test" finished-at="2018-03-13T19:18:48Z" duration-ms="6065">
+    <test started-at="2018-03-18T15:24:38Z" name="Default test" finished-at="2018-03-18T15:24:47Z" duration-ms="8260">
       <class name="feedbacktunertests.marketplaces.GetMarketPlace">
-        <test-method is-config="true" signature="setup()[pri:0, instance:feedbacktunertests.marketplaces.GetMarketPlace@5b1ebf56]" started-at="2018-03-13T21:18:42Z" name="setup" finished-at="2018-03-13T21:18:45Z" duration-ms="2941" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:feedbacktunertests.marketplaces.GetMarketPlace@6642dc5a]" started-at="2018-03-18T17:24:38Z" name="setup" finished-at="2018-03-18T17:24:40Z" duration-ms="1286" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="getAmazonSellerID(java.lang.String)[pri:0, instance:feedbacktunertests.marketplaces.GetMarketPlace@5b1ebf56]" started-at="2018-03-13T21:18:45Z" name="getAmazonSellerID" data-provider="amazonSellerId" finished-at="2018-03-13T21:18:48Z" duration-ms="3090" status="PASS">
+        <test-method signature="amazonSellerIdTest(java.lang.String)[pri:0, instance:feedbacktunertests.marketplaces.GetMarketPlace@6642dc5a]" started-at="2018-03-18T17:24:40Z" name="amazonSellerIdTest" data-provider="amazonSellerId" finished-at="2018-03-18T17:24:43Z" duration-ms="2998" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -21,7 +21,22 @@
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- getAmazonSellerID -->
+        </test-method> <!-- amazonSellerIdTest -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:feedbacktunertests.marketplaces.GetMarketPlace@6642dc5a]" started-at="2018-03-18T17:24:43Z" name="setup" finished-at="2018-03-18T17:24:44Z" duration-ms="1313" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="marketPlaceIdTest(java.lang.String)[pri:0, instance:feedbacktunertests.marketplaces.GetMarketPlace@6642dc5a]" started-at="2018-03-18T17:24:44Z" name="marketPlaceIdTest" data-provider="marketPlaceId" finished-at="2018-03-18T17:24:47Z" duration-ms="2602" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[124]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- marketPlaceIdTest -->
       </class> <!-- feedbacktunertests.marketplaces.GetMarketPlace -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
