@@ -9,10 +9,9 @@ import io.restassured.specification.RequestSpecification;
 
 public class BaseAPI {
 	
-	RestAssured ra = new RestAssured();
-	public static Response response;
-	public final String VALID_USER = "roy.daklon@mailinator.com";
-	public final String VALID_PASSWORD = "Nji90okm";
+	private static Response response;
+	private final String VALID_USER = "roy.daklon@mailinator.com";
+	private final String VALID_PASSWORD = "Nji90okm";
 	
 	public BaseAPI() {
 	}
@@ -25,7 +24,7 @@ public class BaseAPI {
 		return RestAssured.baseURI = URI;	 
 	}
 	
-	public RequestSpecification httpRequest() {
+	public RequestSpecification given() {
 		return RestAssured.given();
 	}
 	
@@ -34,7 +33,7 @@ public class BaseAPI {
 		Map<String, String> jsonAsMap = new HashMap<>();
 	    jsonAsMap.put("username", VALID_USER);
 	    jsonAsMap.put("password", VALID_PASSWORD);
-	    response = RestAssured.given().
+	    response = given().
 	        contentType("application/json").
 	        body(jsonAsMap).
 	        when().
@@ -43,5 +42,13 @@ public class BaseAPI {
 	    		replace("{", "").trim().
 	    		replace("}", "").trim();
 	    return authCookie;
+	}
+	
+	public void logout() {
+		RestAssured.given().
+		contentType("application/json").
+		when().
+		post(getBasePath() + getBaseURI("/logout"))
+		.then().statusCode(200);
 	}
 }

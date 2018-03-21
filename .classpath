@@ -37,5 +37,6 @@
 	<classpathentry kind="lib" path="C:/devtools/rest-assured-3.0.7-dist/rest-assured-3.0.7-deps/httpmime-4.5.1.jar"/>
 	<classpathentry kind="lib" path="C:/devtools/rest-assured-3.0.7-dist/rest-assured-3.0.7-deps/jaxb-api-2.2.12.jar"/>
 	<classpathentry kind="lib" path="C:/devtools/rest-assured-3.0.7-dist/rest-assured-3.0.7-deps/tagsoup-1.2.1.jar"/>
+	<classpathentry kind="lib" path="external_lib/mysql-connector-java-5.1.46-bin.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
