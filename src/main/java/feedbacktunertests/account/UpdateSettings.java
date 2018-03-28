@@ -1,5 +1,6 @@
 package feedbacktunertests.account;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +12,13 @@ public class UpdateSettings extends BaseAPI {
 	private Map<String, Object> jsonAsMap = new HashMap<>();
 	
 	public UpdateSettings() {
-		getCookieAfterLogin();
+		try {
+			establishConnection();
+			selectUsernameFromDB();
+		} 
+		catch (IllegalAccessException | ClassNotFoundException | InstantiationException | SQLException e) {
+			throw new AssertionError("Failed to connect to MySql DB", e);
+		} 
 	}
 	
 	public UpdateSettings updateCompanyInfo(String firstName, String lastName, String companyName, String vatNumber, 
@@ -32,6 +39,11 @@ public class UpdateSettings extends BaseAPI {
 	public UpdateSettings updateDefaultMarketPlaceId(int id) {
 	    jsonAsMap.put("defaultMarketPlaceId", id);
 	    return this;
+	}
+	
+	public UpdateSettings updateDefaultemail(String defaultTestEmailAddress) {
+		jsonAsMap.put("defaultTestEmailAddress", defaultTestEmailAddress);
+		return this;
 	}
 	
 	public Response updateAccountSettings() {

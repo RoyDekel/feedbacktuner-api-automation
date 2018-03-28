@@ -1,5 +1,7 @@
 package feedbacktunertests.marketplaces;
 
+import java.sql.SQLException;
+
 import feedbacktunertests.infra.BaseAPI;
 import io.restassured.response.Response;
 
@@ -9,7 +11,13 @@ public class MarketPlaces extends BaseAPI {
 	public static String jsonAsString;
 	
 	public MarketPlaces() {
-		getCookieAfterLogin();
+		try {
+			establishConnection();
+			selectUsernameFromDB();
+		} 
+		catch (IllegalAccessException | ClassNotFoundException | InstantiationException | SQLException e) {
+			throw new AssertionError("Failed to connect to MySql DB", e);
+		} 
 	}
 	
 	public Response getMarketPlaces() {

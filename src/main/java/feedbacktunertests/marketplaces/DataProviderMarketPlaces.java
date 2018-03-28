@@ -13,7 +13,8 @@ public class DataProviderMarketPlaces {
 	
 	@DataProvider(name = "marketPlaceId")
 	public static Object[][] marketPlaceId() {
-		return new Object[][] {{ "[124]" }} ;
+		return new Object[][] {{ "[124]" }
+		};
 	}
 }
 

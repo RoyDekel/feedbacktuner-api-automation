@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="1" total="2" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2018-03-21T14:34:06Z" name="Default suite" finished-at="2018-03-21T14:34:10Z" duration-ms="4454">
+  <suite started-at="2018-03-26T12:34:36Z" name="Default suite" finished-at="2018-03-26T12:34:43Z" duration-ms="7119">
     <groups>
     </groups>
-    <test started-at="2018-03-21T14:34:06Z" name="Default test" finished-at="2018-03-21T14:34:10Z" duration-ms="4454">
-      <class name="feedbacktunertests.marketplaces.TestMarketPlace">
-        <test-method signature="amazonSellerIdTest(java.lang.String)[pri:0, instance:feedbacktunertests.marketplaces.TestMarketPlace@3fc05ea2]" started-at="2018-03-21T16:34:06Z" name="amazonSellerIdTest" data-provider="amazonSellerId" finished-at="2018-03-21T16:34:10Z" duration-ms="4420" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[A14PABE1P9H9M8]]]>
-              </value>
-            </param>
-          </params>
+    <test started-at="2018-03-26T12:34:36Z" name="Default test" finished-at="2018-03-26T12:34:43Z" duration-ms="7119">
+      <class name="feedbacktunertests.account.TestUpdateSettings">
+        <test-method signature="updateCompanyInfoTest()[pri:0, instance:feedbacktunertests.account.TestUpdateSettings@298a5e20]" started-at="2018-03-26T15:34:36Z" name="updateCompanyInfoTest" finished-at="2018-03-26T15:34:40Z" duration-ms="4553" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- amazonSellerIdTest -->
-      </class> <!-- feedbacktunertests.marketplaces.TestMarketPlace -->
+        </test-method> <!-- updateCompanyInfoTest -->
+        <test-method signature="updateDefaultSettingsTest()[pri:0, instance:feedbacktunertests.account.TestUpdateSettings@298a5e20]" started-at="2018-03-26T15:34:40Z" name="updateDefaultSettingsTest" finished-at="2018-03-26T15:34:43Z" duration-ms="2541" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- updateDefaultSettingsTest -->
+      </class> <!-- feedbacktunertests.account.TestUpdateSettings -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
