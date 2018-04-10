@@ -3,11 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test name="Default test(failed)">
     <classes>
-      <class name="feedbacktunertests.marketplaces.TestMarketPlace">
+      <class name="feedbacktunertests.account.TestUpdateSettings">
         <methods>
-          <include name="amazonSellerIdTest" invocation-numbers="0"/>
+          <include name="updateCompanyInfoTest"/>
+          <include name="updateDefaultSettingsTest"/>
         </methods>
-      </class> <!-- feedbacktunertests.marketplaces.TestMarketPlace -->
+      </class> <!-- feedbacktunertests.account.TestUpdateSettings -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

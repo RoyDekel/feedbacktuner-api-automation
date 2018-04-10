@@ -14,10 +14,10 @@ import io.restassured.specification.RequestSpecification;
 
 public class BaseAPI {
 	
-	private static Response response;
-	private final String VALID_USER = "roy.daklon@mailinator.com";
-	private String VALID_PASSWORD;
-	private static Connection conn = null;
+	protected static Response response;
+	protected final String VALID_USER = "roy.daklon@mailinator.com";
+	protected String VALID_PASSWORD;
+	protected static Connection conn = null;
 	
 	public BaseAPI() {
 	}
@@ -98,6 +98,5 @@ public class BaseAPI {
         catch (SQLException e) {
 			e.printStackTrace();
         }
-		//closeConnection();
 	}
 }
