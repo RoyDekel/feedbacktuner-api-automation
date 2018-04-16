@@ -1,6 +1,0 @@
-Username: roy.daklon@mailinator.com
-Password: Nji90okm
-DB Url: jdbc:mysql://feedbacktuner-test.ckunsnoskhjl.us-west-2.rds.amazonaws.com:3306/feedbacktuner?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false
-Driver: com.mysql.jdbc.Driver
-DB Username: fTuner2014
-DB Password: Seller1985$Kit
