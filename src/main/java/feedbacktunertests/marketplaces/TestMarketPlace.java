@@ -3,19 +3,24 @@ package feedbacktunertests.marketplaces;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestMarketPlace extends MarketPlaces {
+import feedbacktunertests.infra.BaseAPI;
+
+public class TestMarketPlace {
 	
+	private MarketPlaces marketPlace = new MarketPlaces();
+	private BaseAPI baseAPI = new BaseAPI();
 	
 	@Test(dataProviderClass = DataProviderMarketPlaces.class, dataProvider = "amazonSellerId", enabled = true)
 	public void amazonSellerIdTest(String value) {
-		String amazonSellerId = getDataFromJson("amazonSellerId");
-		logout();
+		String amazonSellerId = marketPlace.getDataFromJson("amazonSellerId");
+		baseAPI.logout();
 	    Assert.assertEquals(amazonSellerId, value);
 	}
 	
-	@Test(dataProviderClass = DataProviderMarketPlaces.class, dataProvider = "marketPlaceId", enabled = false)
+	@Test(dataProviderClass = DataProviderMarketPlaces.class, dataProvider = "marketPlaceId", enabled = true)
 	public void marketPlaceIdTest(String value) {
-		String getMarketPlaceId = getDataFromJson("id");		
+		String getMarketPlaceId = marketPlace.getDataFromJson("id");
+		baseAPI.logout();
 		Assert.assertEquals(getMarketPlaceId, value);
 	}
 }

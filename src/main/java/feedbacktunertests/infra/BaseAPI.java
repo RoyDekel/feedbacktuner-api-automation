@@ -15,26 +15,26 @@ import io.restassured.specification.RequestSpecification;
 public class BaseAPI {
 	
 	protected static Response response;
-	protected final String VALID_USER = "roy.daklon@mailinator.com";
-	protected String VALID_PASSWORD;
+	protected final static String VALID_USER = "roy.daklon@mailinator.com";
+	protected static String VALID_PASSWORD;
 	protected static Connection conn = null;
 	
 	public BaseAPI() {
 	}
 	
-	public String getBasePath() {
-		return RestAssured.basePath = "https://test.feedbacktuner.com/api";
+	protected String getBaseURI() {
+		return RestAssured.baseURI = "https://test.feedbacktuner.com/api";
 	}
 	
-	public String getBaseURI(String URI) {
-		return RestAssured.baseURI = URI;	 
+	protected String getPath(String URI) {
+		return RestAssured.basePath = URI;	 
 	}
 	
-	public RequestSpecification given() {
+	protected RequestSpecification given() {
 		return RestAssured.given();
 	}
 	
-	public void establishConnection() throws IllegalAccessException, ClassNotFoundException, 
+	protected void establishConnection() throws IllegalAccessException, ClassNotFoundException, 
 	SQLException, InstantiationException {
 		 // This the URL of your local DB
 		 String url = "jdbc:mysql://feedbacktuner-test.ckunsnoskhjl.us-west-2.rds.amazonaws.com:3306/feedbacktuner?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false";
@@ -53,7 +53,7 @@ public class BaseAPI {
 		 }
 	}
 	
-	public void closeConnection() {
+	protected void closeConnection() {
 		try {
 			conn.close();
 		} catch (SQLException e) {
@@ -62,7 +62,7 @@ public class BaseAPI {
 	}
 	
 	// Get the Cookie of the user and cut the curly brackets from it
-	public String getCookieAfterLogin() {
+	protected String getCookieAfterLogin() {
 		Map<String, String> jsonAsMap = new HashMap<>();
 	    jsonAsMap.put("username", VALID_USER);
 	    jsonAsMap.put("password", VALID_PASSWORD);
@@ -70,23 +70,24 @@ public class BaseAPI {
 	        contentType("application/json").
 	        body(jsonAsMap).
 	        when().
-	        post(getBasePath() + getBaseURI("/login"));
-	    String authCookie = response.getCookies().toString().
+	        post(getBaseURI() + getPath("/login"));
+	    String authCookie = response.getCookies().
+	    		toString().
 	    		replace("{", "").trim().
 	    		replace("}", "").trim();
 	    return authCookie;
 	}
-	
+
 	// Logout from FeedbackTuner
 	public void logout() {
 		RestAssured.given().
 		contentType("application/json").
 		when().
-		post(getBasePath() + getBaseURI("/logout"))
+		post(getBaseURI() + getPath("/logout"))
 		.then().statusCode(200);
 	}
 	
-	public void selectUsernameFromDB() {
+	protected void selectUsernameFromDB() {
 		// Create a statement to be executed
 		String dbQuery = "SELECT * FROM feedbacktuner.user where email = '" + VALID_USER + "'";
 		try {

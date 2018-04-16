@@ -7,10 +7,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class TestUpdateSettings {
 
-	UpdateSettings updateSettings = new UpdateSettings();
-	SettingsObjects settingsObjects = new SettingsObjects();
-	ObjectMapper objectMapper = new ObjectMapper();
-	String jsonAsString;
+	private UpdateSettings updateSettings = new UpdateSettings();
+	private SettingsObjects settingsObjects = new SettingsObjects();
+	private ObjectMapper objectMapper = new ObjectMapper();
+	private String jsonAsString;
 	
 	@Test
 	public void updateDefaultSettingsTest() throws JsonProcessingException {

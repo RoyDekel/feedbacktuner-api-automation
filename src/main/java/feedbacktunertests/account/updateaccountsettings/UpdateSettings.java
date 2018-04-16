@@ -2,6 +2,8 @@ package feedbacktunertests.account.updateaccountsettings;
 
 import java.sql.SQLException;
 import feedbacktunertests.infra.BaseAPI;
+import feedbacktunertests.infra.BaseRequests;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 public class UpdateSettings extends BaseAPI {
@@ -17,13 +19,7 @@ public class UpdateSettings extends BaseAPI {
 	}
 	
 	public Response updateAccountSettings(String jsonAsString) {
-		Response response = given().
-				contentType("application/json").
-		        body(jsonAsString).
-		        cookie(getCookieAfterLogin()).
-		        when().
-		        put(getBasePath() + getBaseURI("/account/settings")).
-		        then().statusCode(200).extract().response();
-		return response;
+		ContentType contentType = ContentType.JSON;
+		return response = new BaseRequests(contentType, jsonAsString).putRequest("/account/settings");
 	}
 }

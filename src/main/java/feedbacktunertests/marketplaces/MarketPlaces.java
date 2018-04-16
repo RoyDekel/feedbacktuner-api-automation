@@ -1,13 +1,13 @@
 package feedbacktunertests.marketplaces;
 
 import java.sql.SQLException;
-
 import feedbacktunertests.infra.BaseAPI;
+import feedbacktunertests.infra.BaseRequests;
 import io.restassured.response.Response;
 
 public class MarketPlaces extends BaseAPI {
 
-	
+	public BaseRequests baseReq; 
 	public static String jsonAsString;
 	
 	public MarketPlaces() {
@@ -20,13 +20,13 @@ public class MarketPlaces extends BaseAPI {
 		} 
 	}
 	
-	public Response getMarketPlaces() {
-		Response response = given().
-		        cookie(getCookieAfterLogin()).
-		        when().
-		        get(getBasePath() + getBaseURI("/marketplaces")).
-		        then().statusCode(200).extract().response();
-		return response;
+	public Response getMarketPlaces() { 
+		return response = new BaseRequests().getRequest("/marketplaces");
+//		return response = given().
+//		        cookie(getCookieAfterLogin()).
+//		        when().
+//		        get(getBaseURI() + getPath("/marketplaces")).
+//		        then().statusCode(200).extract().response();
 	}
 	
 	public String getDataFromJson(String parameter) {

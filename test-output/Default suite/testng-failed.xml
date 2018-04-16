@@ -3,12 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test name="Default test(failed)">
     <classes>
-      <class name="feedbacktunertests.account.TestUpdateSettings">
+      <class name="feedbacktunertests.marketplaces.TestMarketPlace">
         <methods>
-          <include name="updateCompanyInfoTest"/>
-          <include name="updateDefaultSettingsTest"/>
+          <include name="marketPlaceIdTest" invocation-numbers="0"/>
         </methods>
-      </class> <!-- feedbacktunertests.account.TestUpdateSettings -->
+      </class> <!-- feedbacktunertests.marketplaces.TestMarketPlace -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
