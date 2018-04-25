@@ -12,6 +12,12 @@ public class NotificationBaseClass {
 	public NotificationBaseClass() {
 		
 	}
+	
+	/**
+	 * @param enabled
+	 * @param email
+	 * @param phoneNumber
+	 */
 	@JsonCreator
 	public NotificationBaseClass(@JsonProperty("enabled") Boolean enabled,
 			@JsonProperty("email") String email, @JsonProperty("phoneNumber")String phoneNumber) {

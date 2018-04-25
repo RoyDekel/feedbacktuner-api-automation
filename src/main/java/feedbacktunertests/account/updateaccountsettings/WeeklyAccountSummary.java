@@ -12,6 +12,10 @@ public class WeeklyAccountSummary {
 		
 	}
 	
+	/**
+	 * @param email
+	 * @param sendEmailOn
+	 */
 	@JsonCreator
 	public WeeklyAccountSummary(@JsonProperty("email") String email, @JsonProperty("sendEmailOn") String sendEmailOn) {
 		this.email = email;

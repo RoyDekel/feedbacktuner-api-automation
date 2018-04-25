@@ -31,22 +31,37 @@ public class BaseRequests extends BaseAPI {
 		setRequestParams();
 	}
 	
+	/**
+	 * Constructor with only @param contentType
+	 */ 
 	public BaseRequests(ContentType contentType) {
 		setRequestParams();
 		buildRequest.setContentType(contentType);
 	}
 	
+	/**
+	 * Constructor with only @param body
+	 */
 	public BaseRequests(String body) {
 		setRequestParams();
 		buildRequest.setBody(body);
 	 }
 	
+	/**
+	 * @param contentType
+	 * @param body
+	 * Constructor with parameters
+	 */
 	public BaseRequests(ContentType contentType, String body) {
 		setRequestParams();
 		buildRequest.setContentType(contentType);
 	    buildRequest.setBody(body);
 	 }
 	
+	/**
+	 * @param URL
+	 * @return Response of the GET request
+	 */
 	public Response getRequest(String URL) {
 		return response = given()
 				.spec(requestSpec)
@@ -58,6 +73,10 @@ public class BaseRequests extends BaseAPI {
 				.response();
 	}
 	
+	/**
+	 * @param URL
+	 * @return Response of the PUT request
+	 */
 	public Response putRequest(String URL) {
 		return response = given()
 				.spec(requestSpec)

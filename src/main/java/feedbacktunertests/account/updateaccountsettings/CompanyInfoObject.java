@@ -20,6 +20,18 @@ public class CompanyInfoObject {
 		
 	}
 	
+	/**
+	 * @param firstName
+	 * @param lastName
+	 * @param companyName
+	 * @param vatNumber
+	 * @param streetAddress
+	 * @param city
+	 * @param state
+	 * @param country
+	 * @param zipCode
+	 * @param phoneNumber
+	 */
 	@JsonCreator
 	public CompanyInfoObject(@JsonProperty("firstName") String firstName,
 			@JsonProperty("lastName") String lastName,

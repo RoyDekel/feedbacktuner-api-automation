@@ -18,6 +18,10 @@ public class UpdateSettings extends BaseAPI {
 		} 
 	}
 	
+	/**
+	 * @param jsonAsString
+	 * @return Response object
+	 */
 	public Response updateAccountSettings(String jsonAsString) {
 		ContentType contentType = ContentType.JSON;
 		return response = new BaseRequests(contentType, jsonAsString).putRequest("/account/settings");

@@ -22,11 +22,7 @@ public class MarketPlaces extends BaseAPI {
 	
 	public Response getMarketPlaces() { 
 		return response = new BaseRequests().getRequest("/marketplaces");
-//		return response = given().
-//		        cookie(getCookieAfterLogin()).
-//		        when().
-//		        get(getBaseURI() + getPath("/marketplaces")).
-//		        then().statusCode(200).extract().response();
+
 	}
 	
 	public String getDataFromJson(String parameter) {

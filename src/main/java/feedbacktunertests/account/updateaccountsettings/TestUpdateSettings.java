@@ -34,7 +34,7 @@ public class TestUpdateSettings {
 		// Update the default parameters of the JSON and sending the objects
 		settingsObjects = new SettingsObjects("roy.daklon@mailinator.comm",
 				"America/Chicago", 
-				124, 
+				166, 
 				true,
 				settingsObjects.negativeFeedbackNotification,
 				settingsObjects.negativeReviewsNotifications,

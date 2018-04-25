@@ -18,6 +18,16 @@ public class SettingsObjects {
 		
 	}
 	
+	/**
+	 * @param defaultTestEmailAddress
+	 * @param timeZone
+	 * @param defaultMarketPlaceId
+	 * @param autoBlacklistOnNegativeFeedback
+	 * @param negativeFeedbackNotification
+	 * @param negativeReviewsNotifications
+	 * @param weeklyAccountSummary
+	 * @param companyInfo
+	 */
 	@JsonCreator
 	public SettingsObjects(@JsonProperty("defaultTestEmailAddress") String defaultTestEmailAddress, 
 			@JsonProperty("timeZone") String timeZone,
@@ -66,6 +76,18 @@ public class SettingsObjects {
 		weeklyAccountSummary = new WeeklyAccountSummary(email, sendEmailOn);	
 	}
 
+	/**
+	 * @param firstName
+	 * @param lastName
+	 * @param companyName
+	 * @param vatNumber
+	 * @param streetAddress
+	 * @param city
+	 * @param state
+	 * @param country
+	 * @param zipCode
+	 * @param phoneNumber
+	 */
 	public void setCompanyInfo(String firstName, String lastName, String companyName, String vatNumber,
 			String streetAddress, String city, String state, String country, String zipCode, String phoneNumber) {
 		companyInfo = new CompanyInfoObject(firstName, lastName, companyName, vatNumber, streetAddress, city, state, country, zipCode, phoneNumber);

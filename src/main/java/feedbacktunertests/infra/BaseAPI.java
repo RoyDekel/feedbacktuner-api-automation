@@ -1,5 +1,8 @@
 package feedbacktunertests.infra;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -8,6 +11,10 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -15,7 +22,7 @@ import io.restassured.specification.RequestSpecification;
 public class BaseAPI {
 	
 	protected static Response response;
-	protected final static String VALID_USER = "roy.daklon@mailinator.com";
+	protected static String VALID_USER;
 	protected static String VALID_PASSWORD;
 	protected static Connection conn = null;
 	
@@ -26,6 +33,10 @@ public class BaseAPI {
 		return RestAssured.baseURI = "https://test.feedbacktuner.com/api";
 	}
 	
+	/**
+	 * @param URI
+	 * @return String
+	 */
 	protected String getPath(String URI) {
 		return RestAssured.basePath = URI;	 
 	}
@@ -36,21 +47,35 @@ public class BaseAPI {
 	
 	protected void establishConnection() throws IllegalAccessException, ClassNotFoundException, 
 	SQLException, InstantiationException {
-		 // This the URL of your local DB
-		 String url = "jdbc:mysql://feedbacktuner-test.ckunsnoskhjl.us-west-2.rds.amazonaws.com:3306/feedbacktuner?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false";
-		 String driver = "com.mysql.jdbc.Driver";
-		 // Enter the DB username and password
-		 String userName = "fTuner2014";
-		 String password = "Seller1985$Kit";
-		 //This will create Object of Driver class
-		 Class.forName(driver);
-		 conn = (Connection) DriverManager.getConnection(url, userName, password);
-		 if (conn != null) {
-			 System.out.println("Connection Established, take control your database now!");
-		 } 
-		 else {
-			 System.out.println("Failed to make connection!");
-		 }
+		
+		JSONParser parser = new JSONParser();
+		try {
+			Object obj = parser.parse(new FileReader("C:\\Users\\Dell\\Documents\\details.json"));
+			JSONObject jsonObject = (JSONObject) obj;
+			String dbURL = (String) jsonObject.get("dbURL");
+			String driver = (String) jsonObject.get("driver");
+			String dbUsername = (String) jsonObject.get("dbUsername");
+			String dbPassword = (String) jsonObject.get("dbPassword");
+			VALID_USER = (String) jsonObject.get("username");
+			//This will create Object of Driver class
+			Class.forName(driver);
+			conn = (Connection) DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+			if (conn != null) {
+				System.out.println("Connection Established, take control your database now!");
+			} 
+			else {
+				System.out.println("Failed to make connection!");
+			}
+		} 
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		} 
+		catch (ParseException e) {
+			e.printStackTrace();
+		}	
 	}
 	
 	protected void closeConnection() {
@@ -60,8 +85,10 @@ public class BaseAPI {
 			e.printStackTrace();
 		}
 	}
-	
-	// Get the Cookie of the user and cut the curly brackets from it
+	 
+	/**
+	 * Get the Cookie of the user and cut the curly brackets from it
+	 */
 	protected String getCookieAfterLogin() {
 		Map<String, String> jsonAsMap = new HashMap<>();
 	    jsonAsMap.put("username", VALID_USER);
