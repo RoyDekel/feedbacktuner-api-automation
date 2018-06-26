@@ -10,14 +10,14 @@ public class TestMarketPlace {
 	private MarketPlaces marketPlace = new MarketPlaces();
 	private BaseAPI baseAPI = new BaseAPI();
 	
-	@Test(dataProviderClass = DataProviderMarketPlaces.class, dataProvider = "amazonSellerId", enabled = true)
+	@Test(dataProviderClass = DataProviderMarketPlaces.class, dataProvider = "amazonSellerId")
 	public void amazonSellerIdTest(String value) {
 		String amazonSellerId = marketPlace.getDataFromJson("amazonSellerId");
 		baseAPI.logout();
 	    Assert.assertEquals(amazonSellerId, value);
 	}
 	
-	@Test(dataProviderClass = DataProviderMarketPlaces.class, dataProvider = "marketPlaceId", enabled = true)
+	@Test(dataProviderClass = DataProviderMarketPlaces.class, dataProvider = "marketPlaceId")
 	public void marketPlaceIdTest(String value) {
 		String getMarketPlaceId = marketPlace.getDataFromJson("id");
 		baseAPI.logout();

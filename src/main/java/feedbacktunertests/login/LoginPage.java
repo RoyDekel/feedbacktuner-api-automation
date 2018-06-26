@@ -2,14 +2,14 @@ package feedbacktunertests.login;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import com.jayway.restassured.RestAssured;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import io.restassured.RestAssured;
+
 
 public class LoginPage {
 
-	RestAssured ra = new RestAssured();
-	
 	@BeforeMethod
 	public void setBaseURI() {
 		RestAssured.basePath = "https://test.feedbacktuner.com/api";

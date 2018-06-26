@@ -1,10 +1,12 @@
 package feedbacktunertests.account.updateaccountsettings;
 
-import java.sql.SQLException;
+import com.jayway.restassured.http.ContentType;
+import com.jayway.restassured.response.Response;
 import feedbacktunertests.infra.BaseAPI;
 import feedbacktunertests.infra.BaseRequests;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
+
+
+import java.sql.SQLException;
 
 public class UpdateSettings extends BaseAPI {
 
@@ -24,6 +26,6 @@ public class UpdateSettings extends BaseAPI {
 	 */
 	public Response updateAccountSettings(String jsonAsString) {
 		ContentType contentType = ContentType.JSON;
-		return response = new BaseRequests(contentType, jsonAsString).putRequest("/account/settings");
+		return new BaseRequests(contentType, jsonAsString).putRequest("/account/settings");
 	}
 }

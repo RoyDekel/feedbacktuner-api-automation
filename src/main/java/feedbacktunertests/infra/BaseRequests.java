@@ -1,13 +1,13 @@
 package feedbacktunertests.infra;
 
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.builder.ResponseSpecBuilder;
-import io.restassured.filter.log.RequestLoggingFilter;
-import io.restassured.filter.log.ResponseLoggingFilter;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import io.restassured.specification.ResponseSpecification;
+import com.jayway.restassured.builder.RequestSpecBuilder;
+import com.jayway.restassured.builder.ResponseSpecBuilder;
+import com.jayway.restassured.filter.log.RequestLoggingFilter;
+import com.jayway.restassured.filter.log.ResponseLoggingFilter;
+import com.jayway.restassured.http.ContentType;
+import com.jayway.restassured.response.Response;
+import com.jayway.restassured.specification.RequestSpecification;
+import com.jayway.restassured.specification.ResponseSpecification;
 
 public class BaseRequests extends BaseAPI {
 
@@ -63,6 +63,7 @@ public class BaseRequests extends BaseAPI {
 	 * @return Response of the GET request
 	 */
 	public Response getRequest(String URL) {
+
 		return response = given()
 				.spec(requestSpec)
 				.when()

@@ -1,9 +1,10 @@
 package feedbacktunertests.marketplaces;
 
 import java.sql.SQLException;
+
+import com.jayway.restassured.response.Response;
 import feedbacktunertests.infra.BaseAPI;
 import feedbacktunertests.infra.BaseRequests;
-import io.restassured.response.Response;
 
 public class MarketPlaces extends BaseAPI {
 
@@ -20,7 +21,7 @@ public class MarketPlaces extends BaseAPI {
 		} 
 	}
 	
-	public Response getMarketPlaces() { 
+	public Response getMarketPlaces() {
 		return response = new BaseRequests().getRequest("/marketplaces");
 
 	}

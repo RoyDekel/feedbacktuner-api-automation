@@ -11,16 +11,15 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Response;
+import com.jayway.restassured.specification.RequestSpecification;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import io.restassured.RestAssured;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-
 public class BaseAPI {
-	
+
 	protected static Response response;
 	protected static String VALID_USER;
 	protected static String VALID_PASSWORD;
@@ -50,7 +49,7 @@ public class BaseAPI {
 		
 		JSONParser parser = new JSONParser();
 		try {
-			Object obj = parser.parse(new FileReader("C:\\Users\\Dell\\Documents\\details.json"));
+			Object obj = parser.parse(new FileReader("C:\\Users\\royda\\Documents\\details.json"));
 			JSONObject jsonObject = (JSONObject) obj;
 			String dbURL = (String) jsonObject.get("dbURL");
 			String driver = (String) jsonObject.get("driver");
