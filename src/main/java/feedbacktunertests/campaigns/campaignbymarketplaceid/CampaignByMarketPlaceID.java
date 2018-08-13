@@ -1,31 +1,31 @@
 package feedbacktunertests.campaigns.campaignbymarketplaceid;
 
-import java.sql.SQLException;
-
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
 import feedbacktunertests.infra.BaseAPI;
 import feedbacktunertests.infra.BaseRequests;
+import feedbacktunertests.marketplaces.MarketPlaces;
 
-public class CampaignByMarketPlaceID extends BaseAPI {
+public class CampaignByMarketPlaceID {
 
-    //MarketPlaces marketPlace = new MarketPlaces();
+    private static CampaignByMarketPlaceID instance=null;
 
     public CampaignByMarketPlaceID() {
-        try {
-            establishConnection();
-            selectUsernameFromDB();
+    }
+
+    public static CampaignByMarketPlaceID getInstance() {
+        if (instance == null) {
+            instance = new CampaignByMarketPlaceID();
         }
-        catch (IllegalAccessException | ClassNotFoundException | InstantiationException | SQLException e) {
-            throw new AssertionError("Failed to connect to MySql DB", e);
-        }
+        return instance;
     }
 
     public Response getCampaignByMarketPlace() {
         ContentType contentType = ContentType.URLENC;
-        //String getMarketPlaceId = marketPlace.getDataFromJson("id");
-        return response = new BaseRequests(contentType)
-                .getRequest("/campains?marketPlaceId=124"); //+ getMarketPlaceId);
+        return new BaseRequests(contentType)
+                .getRequest("/campains?marketPlaceId=" + MarketPlaces.getInstance().getDataFromJson("id")
+                        .replace("[", "").trim()
+                        .replace("]", "").trim());
     }
 
     public String getJSONObjectAsString() {

@@ -21,9 +21,9 @@ import org.json.simple.parser.ParseException;
 public class BaseAPI {
 
 	protected static Response response;
-	protected static String VALID_USER;
-	protected static String VALID_PASSWORD;
-	protected static Connection conn = null;
+	//protected static String VALID_USER;
+	//protected static String VALID_PASSWORD;
+
 	
 	public BaseAPI() {
 	}
@@ -37,61 +37,21 @@ public class BaseAPI {
 	 * @return String
 	 */
 	protected String getPath(String URI) {
-		return RestAssured.basePath = URI;	 
+		return RestAssured.basePath = URI;
 	}
 	
 	protected RequestSpecification given() {
 		return RestAssured.given();
 	}
-	
-	protected void establishConnection() throws IllegalAccessException, ClassNotFoundException, 
-	SQLException, InstantiationException {
-		
-		JSONParser parser = new JSONParser();
-		try {
-			Object obj = parser.parse(new FileReader("C:\\Users\\royda\\Documents\\details.json"));
-			JSONObject jsonObject = (JSONObject) obj;
-			String dbURL = (String) jsonObject.get("dbURL");
-			String driver = (String) jsonObject.get("driver");
-			String dbUsername = (String) jsonObject.get("dbUsername");
-			String dbPassword = (String) jsonObject.get("dbPassword");
-			VALID_USER = (String) jsonObject.get("username");
-			//This will create Object of Driver class
-			Class.forName(driver);
-			conn = (Connection) DriverManager.getConnection(dbURL, dbUsername, dbPassword);
-			if (conn != null) {
-				System.out.println("Connection Established, take control your database now!");
-			} 
-			else {
-				System.out.println("Failed to make connection!");
-			}
-		} 
-		catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} 
-		catch (IOException e) {
-			e.printStackTrace();
-		} 
-		catch (ParseException e) {
-			e.printStackTrace();
-		}	
-	}
-	
-	protected void closeConnection() {
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+
 	 
 	/**
 	 * Get the Cookie of the user and cut the curly brackets from it
 	 */
 	protected String getCookieAfterLogin() {
 		Map<String, String> jsonAsMap = new HashMap<>();
-	    jsonAsMap.put("username", VALID_USER);
-	    jsonAsMap.put("password", VALID_PASSWORD);
+	    jsonAsMap.put("username", ConnectionToDB.getInstance().getValidUser());
+	    jsonAsMap.put("password", ConnectionToDB.getInstance().getValidPassword());
 	    response = given().
 	        contentType("application/json").
 	        body(jsonAsMap).
@@ -111,19 +71,5 @@ public class BaseAPI {
 		when().
 		post(getBaseURI() + getPath("/logout"))
 		.then().statusCode(200);
-	}
-	
-	protected void selectUsernameFromDB() {
-		// Create a statement to be executed
-		String dbQuery = "SELECT * FROM feedbacktuner.user where email = '" + VALID_USER + "'";
-		try {
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(dbQuery);
-			while (rs.next())
-				VALID_PASSWORD = rs.getString("password");
-		} 
-        catch (SQLException e) {
-			e.printStackTrace();
-        }
 	}
 }

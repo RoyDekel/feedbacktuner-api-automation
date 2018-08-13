@@ -7,13 +7,13 @@ public class DataProviderMarketPlaces {
 	@DataProvider(name = "amazonSellerId")
 	public static Object[][] amazonSellerId() {
 		return new Object[][] {
-			new Object[] { "[A14PABE1P9H9M8]" } 
+			new Object[] { "[A2SGN4CVJWVM94]" }
 		};
 	}
 	
 	@DataProvider(name = "marketPlaceId")
 	public static Object[][] marketPlaceId() {
-		return new Object[][] {{ "[124]" }
+		return new Object[][] {{ "[65]" }
 		};
 	}
 }

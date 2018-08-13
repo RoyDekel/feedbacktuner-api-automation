@@ -1,26 +1,25 @@
 package feedbacktunertests.marketplaces;
 
-import java.sql.SQLException;
-
 import com.jayway.restassured.response.Response;
 import feedbacktunertests.infra.BaseAPI;
 import feedbacktunertests.infra.BaseRequests;
 
 public class MarketPlaces extends BaseAPI {
 
-	public BaseRequests baseReq; 
 	public static String jsonAsString;
-	
-	public MarketPlaces() {
-		try {
-			establishConnection();
-			selectUsernameFromDB();
-		} 
-		catch (IllegalAccessException | ClassNotFoundException | InstantiationException | SQLException e) {
-			throw new AssertionError("Failed to connect to MySql DB", e);
-		} 
+	private static MarketPlaces instance = null;
+
+	private MarketPlaces() {
+
 	}
-	
+
+	public static MarketPlaces getInstance() {
+		if (instance == null) {
+			instance = new MarketPlaces();
+		}
+		return instance;
+	}
+
 	public Response getMarketPlaces() {
 		return response = new BaseRequests().getRequest("/marketplaces");
 

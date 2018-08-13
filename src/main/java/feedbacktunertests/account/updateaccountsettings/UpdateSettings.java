@@ -4,6 +4,7 @@ import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
 import feedbacktunertests.infra.BaseAPI;
 import feedbacktunertests.infra.BaseRequests;
+import feedbacktunertests.infra.ConnectionToDB;
 
 
 import java.sql.SQLException;
@@ -12,10 +13,10 @@ public class UpdateSettings extends BaseAPI {
 
 	public UpdateSettings() {
 		try {
-			establishConnection();
-			selectUsernameFromDB();
+			ConnectionToDB.getInstance().establishConnection();
+			ConnectionToDB.getInstance().selectUsernameFromDB();
 		} 
-		catch (IllegalAccessException | ClassNotFoundException | InstantiationException | SQLException e) {
+		catch (ClassNotFoundException | SQLException e) {
 			throw new AssertionError("Failed to connect to MySql DB", e);
 		} 
 	}
